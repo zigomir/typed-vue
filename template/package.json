@@ -5,7 +5,7 @@
   "author": "{{ author }}",
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --port 3000 --hot",
-    "build": "NODE_ENV=production webpack --progress --hide-modules"
+    "build": "rm -r dist/*.* && NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
     "vue": "^2.3.4"
