@@ -16,17 +16,38 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+
+    <button @click="openDialog">Dialog</button>
+    <my-component v-if="showMyComponent"></my-component>
   </div>
 </template>
 
 <script lang="ts">
+import Vue, { ComponentOptions } from 'vue'
+
+interface ThisComponent extends Vue {
+  showMyComponent: boolean
+}
+
 export default {
-  data () {
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      showMyComponent: false
+    }
+  },
+  components: {
+    // dynamically load my-component
+    // this addes a bit to main build but when you have decently sized components 
+    // you get huge wins loading them lazily instead of up front
+    'my-component': () => import('./components/my-component.vue')
+  },
+  methods: {
+    openDialog() {
+      this.showMyComponent = true
     }
   }
-}
+} as ComponentOptions<ThisComponent>
 </script>
 
 <style>
