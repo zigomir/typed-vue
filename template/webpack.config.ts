@@ -1,9 +1,10 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+import * as path from 'path'
+import * as webpack from 'webpack'
+import { Configuration } from 'webpack'
+import * as HtmlWebpackPlugin from 'html-webpack-plugin'
+import * as ExtractTextPlugin from 'extract-text-webpack-plugin'
 
-module.exports = {
+const config: Configuration = {
   entry: './src/main.ts',
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -54,24 +55,28 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  config.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
-  module.exports.plugins = module.exports.plugins.concat([
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.DefinePlugin({ 
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new ExtractTextPlugin('[name].[hash].css'),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ])
+  if (config.plugins) {
+    config.plugins = config.plugins.concat([
+      new webpack.optimize.ModuleConcatenationPlugin(),
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: '"production"'
+        }
+      }),
+      new ExtractTextPlugin('[name].[hash].css'),
+      new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
+        compress: {
+          warnings: false
+        }
+      }),
+      new webpack.LoaderOptionsPlugin({
+        minimize: true
+      })
+    ])
+  }
 }
+
+export default config
