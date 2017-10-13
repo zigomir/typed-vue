@@ -1,10 +1,9 @@
-import * as path from 'path'
-import * as webpack from 'webpack'
-import { Configuration } from 'webpack'
-import * as HtmlWebpackPlugin from 'html-webpack-plugin'
-import * as ExtractTextPlugin from 'extract-text-webpack-plugin'
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const config: Configuration = {
+let config = {
   entry: './src/main.ts',
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -79,4 +78,4 @@ if (process.env.NODE_ENV === 'production') {
   }
 }
 
-export default config
+module.exports = config

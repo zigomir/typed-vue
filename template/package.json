@@ -1,27 +1,26 @@
 {
-  "name": "{{ name }}",
-  "description": "{{ description }}",
-  "version": "1.0.0",
-  "author": "{{ author }}",
+  "name": "name",
+  "description": "description",
+  "version": "2.0.0",
+  "author": "author",
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --port 3000 --hot",
-    "build": "rm -r dist/*.* && NODE_ENV=production webpack --progress --hide-modules"
+    "build": "rm -rf dist/*.* && NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue": "^2.4.2"
+    "vue": "^2.5.0"
   },
   "devDependencies": {
-    "@types/webpack": "^3.0.5",
     "css-loader": "^0.28.1",
     "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^0.11.0",
+    "file-loader": "^1.1.5",
     "html-webpack-plugin": "^2.30.1",
     "ts-loader": "^2.3.2",
     "ts-node": "^3.3.0",
-    "typescript": "^2.4.2",
-    "vue-loader": "^13.0.4",
+    "typescript": "^2.5.3",
+    "vue-loader": "^13.3.0",
     "vue-template-compiler": "^2.4.2",
-    "webpack": "^3.4.1",
-    "webpack-dev-server": "^2.6.1"
+    "webpack": "^3.7.1",
+    "webpack-dev-server": "^2.9.1"
   }
 }

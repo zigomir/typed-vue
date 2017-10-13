@@ -20,13 +20,15 @@
 </template>
 
 <script lang="ts">
-export default {
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+import Vue from 'vue'
+
+export default Vue.extend({
+  props: ['msg', 'num'],
+
+  mounted() {
+    console.log('Mounted!', this.msg, this.num)
   }
-}
+})
 </script>
 
 <style>
